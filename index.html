@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="icon" type="image/png" href="img/favicon.png" />
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/Aristo/jquery-ui-1.8.7.custom.css" />
+    <link rel="stylesheet" href="css/minicolors/jquery.miniColors.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="css/styles2.css" />
+    <link rel="stylesheet" type="text/css" href="css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="css/sanitize.css" />
+    <link rel="stylesheet" href="css/login.css">
+
+</head>
+
+<body>
+    <div class="login">
+        <h1>Mind Map</h1>
+        <h1>Login</h1>
+        <main>
+            <form>
+                <input id="name" type="text" name="u" placeholder="Username or ID" required="required" />
+                <input id="pass" type="password" name="p" placeholder="Password" required="required" />
+                <input id="comment" type="text" name="c" placeholder="comment" required="required" />
+                <button id="login" type="submit" class="btn btn-primary btn-block btn-large"
+                    onclick="location.href='mindmap.html'">Let me in.</button>
+            </form>
+    </div>
+
+
+
+    <div class="form11 input">
+        <form method="post" action="mailto:earth.factor1979@gmail.com?Subject=MindMap利用調査">
+            <!-- <p>MindMapってブッチャケ使う？</p> -->
+            <ul>
+                <li>
+                    <p>MindMap使用頻度評価</p>
+                </li>
+                <li><select name="shiyouhinndo" id="no1"></select></li>
+                <!-- <p>本当に使う？</p> -->
+                <li>
+                    <p>MindMap必要度評価</p>
+                </li>
+                <li><select name="hitsuyoudo" id="no2"></select></li>
+
+                <li><button><input type="submit" value="ご意見を送信" /></button></li>
+            </ul>
+        </form>
+    </div>
+
+
+    </main>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+
+        const start = 0;
+        const end = 5;
+        let option = '';
+        for (let i = start; i <= end; i++) {
+            option += '<option>' + i + '<option>';
+        }
+        $('#no1').html(option);
+        $('#no2').html(option);
+
+        $('#login').on('click', function () {
+            const data = {
+                username: $('#name').val(),
+                password: $('#pass').val(),
+                comment: $('#comment').val(),
+            };
+            const jsonData = JSON.stringify(data);
+            localStorage.setItem('hoge', jsonData);
+            alert("保存");
+
+
+            if (localStorage.getItem('hoge')) {
+                const jsonText = localStorage.getItem('hoge');
+                const text = JSON.parse(jsonText);
+                $('#name').val(text.title);
+                $('#pass').val(text.text);
+                $('#comment').val(text.text);
+            }
+        })
+    </script>
+
+
+
+</body>
+
+</html>
